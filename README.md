@@ -170,6 +170,9 @@ import * as QQAPI from 'react-native-qq-lib';
 图片路径不支持 http 和 https 网络地址（网络地址的先自己下载图片，这里推荐[rn-fetch-blob](https://github.com/joltup/rn-fetch-blob#readme)库）。
 
 ```
+import RNFetchBlob from 'rn-fetch-blob';
+
+
 const _image = 图片地址或路径;
 
 if (RegExp(/http:\/\//).exec(_image) || RegExp(/https:\/\//).exec(_image)) {
