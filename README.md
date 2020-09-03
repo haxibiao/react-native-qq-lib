@@ -1,38 +1,39 @@
-# react-native-qq
+# react-native-qq-lib
 
-[![npm version](https://badge.fury.io/js/react-native-qq.svg)](http://badge.fury.io/js/react-native-qq)
+[![npm version](https://badge.fury.io/js/react-native-qq-lib.svg)](http://badge.fury.io/js/react-native-qq-lib)
 
 React Native 的 QQ 登录插件, react-native 版本需要 0.40.0 及以上
+
+## 前言
+
+首先向各位声明，本库是在 [react-native-qq](https://github.com/reactnativecn/react-native-qq) 基础上进行重写。  
+
+本身是维护给自己使用的，考虑到自身使用和其它开发者的需要，最终决定开一个新仓库，提供给新项目使用。  
+
+最后，感谢 [lvbingru](https://github.com/lvbingru)，[tdzl2003](https://github.com/tdzl2003) 和各位开发者为 react-native-qq 做出的贡献。
+
 
 ## 如何安装
 
 ### 首先安装 npm 包
 
 ```bash
-yarn add git+http://code.haxibiao.cn/packages/react-native-qq.git
+yarn add git+https://github.com/haxibiao/react-native-qq-lib.git
 ```
 
 或
 
 ```bash
-npm install -D git+http://code.haxibiao.cn/packages/react-native-qq.git
+npm install -D git+https://github.com/haxibiao/react-native-qq-lib.git
 ```
 
 然后执行
 
 ```bash
-react-native link react-native-qq
+cd ios && pod install && cd ..
 ```
 
 ### 安装 iOS 工程
-
-在工程 target 的`Build Phases->Link Binary with Libraries`中加入`libRCTQQAPI.a、libiconv.tbd、libsqlite3.tbd、libz.tbd、libc++.tbd`
-
-在 `Build Settings->Search Paths->Framework Search Paths`（如果你找不到 Framework Search Paths，请注意选择 Build Settings 下方的 All，而不是 Basic） 中加入路径 `$(SRCROOT)/../node_modules/react-native-qq/ios/RCTQQAPI`
-
-在 `Build Settings->Link->Other Linker Flags` 中加入 `-framework "TencentOpenAPI"`
-
-在 `Apple LLVM X.X - Custom Compiler Flags->Link->Other C Flags`中加入 `-isystem "$(SRCROOT)/../node_modules/react-native-qq/ios/RCTQQAPI"`
 
 在工程 plist 文件中加入 qq 白名单：(ios9 以上必须)
 请以文本方式打开 Info.plist，在其中添加
@@ -107,7 +108,7 @@ manifestPlaceholders = [
 ### 引入包
 
 ```
-import * as QQAPI from 'react-native-qq';
+import * as QQAPI from 'react-native-qq-lib';
 ```
 
 ### API
@@ -155,7 +156,6 @@ import * as QQAPI from 'react-native-qq';
 
 // 分享图片
 // By：这里的 imageUrl 和 imageLocalUrl 都要传而且保持一致（别问我为啥埋这个坑，问就是腾讯的 SDK 这样搞的）
-// 图片路径不支持 http 和 https 网络地址（网络地址的先自己下载图片，这里推荐[rn-fetch-blob](https://github.com/joltup/rn-fetch-blob#readme)库）。
 // 支持的路径如：  file://      content://     /data/user/0/com.xxxxx/cache/
 {
     type: 'image',
@@ -166,6 +166,46 @@ import * as QQAPI from 'react-native-qq';
 
 // 其余格式尚未实现。
 ```
+
+图片路径不支持 http 和 https 网络地址（网络地址的先自己下载图片，这里推荐[rn-fetch-blob](https://github.com/joltup/rn-fetch-blob#readme)库）。
+
+```
+const _image = 图片地址或路径;
+
+if (RegExp(/http:\/\//).exec(_image) || RegExp(/https:\/\//).exec(_image)) {
+  // 判断是网络地址的话先下载图片，然后再分享图片
+
+  RNFetchBlob.config({
+    fileCache: true,
+    appendExt: "png",
+  })
+    .fetch("GET", _image)
+    .then((res) => {
+      const qq = QQAPI.shareToQzone({
+        type: "image",
+        imageUrl: res.path(),
+        imageLocalUrl: res.path(),
+      });
+      qq.then(() => {
+        __onSucceed();
+      }).catch(() => {
+      });
+    })
+    .catch((error) => {
+    });
+} else {
+  const qq = QQAPI.shareToQzone({
+    type: "image",
+    imageUrl: _image,
+    imageLocalUrl: _image,
+  });
+  qq.then(() => {
+  }).catch(() => {
+  });
+}
+
+```
+
 
 ## 常见问题
 
