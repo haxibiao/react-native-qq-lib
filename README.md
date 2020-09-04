@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/react-native-qq-lib.svg)](http://badge.fury.io/js/react-native-qq-lib)
 
-React Native 的 QQ 登录插件, react-native 版本需要 0.40.0 及以上
+React Native bridging library that integrates QQ SDKs. QQ 登陆 分享，集成 QQ SDK react-native 版本需要 0.40.0 及以上
 
 ## 前言
 
@@ -12,6 +12,11 @@ React Native 的 QQ 登录插件, react-native 版本需要 0.40.0 及以上
 
 最后，感谢 [lvbingru](https://github.com/lvbingru)，[tdzl2003](https://github.com/tdzl2003) 和各位开发者为 react-native-qq 做出的贡献。
 
+### 集成 QQ SDK 包版本
+
+> Android SDK 版本：v3.3.9（2020-04-27）
+
+> IOS SDK 版本：v3.3.9（2020-04-27）
 
 ## 如何安装
 
