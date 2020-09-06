@@ -23,13 +23,13 @@ React Native bridging library that integrates QQ SDKs. QQ 登陆 分享，集成
 ### 首先安装 npm 包
 
 ```bash
-yarn add git+https://github.com/haxibiao/react-native-qq-lib.git
+yarn add github:haxibiao/react-native-qq-lib
 ```
 
 或
 
 ```bash
-npm install -D git+https://github.com/haxibiao/react-native-qq-lib.git
+npm install -D github:haxibiao/react-native-qq-lib
 ```
 
 然后执行
