@@ -7,16 +7,16 @@ Pod::Spec.new do |s|
   s.version      = package["version"]
   s.summary      = package["description"]
   s.description  = <<-DESC
-                  react-native-qq
+                    react-native-qq-lib
                    DESC
-  s.homepage     = "https://github.com/haxibiao/react-native-qq"
+  s.homepage     = "https://github.com/haxibiao/react-native-qq-lib"
   # brief license entry:
   s.license      = "MIT"
   # optional - use expanded license entry instead:
   # s.license    = { :type => "MIT", :file => "LICENSE" }
   s.authors      = { "PBK-B" => "bin@PBK6.cn" }
   s.platforms    = { :ios => "9.0" }
-  s.source       = { :git => "https://github.com/haxibiao/react-native-qq.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/haxibiao/react-native-qq-lib.git", :tag => "#{s.version}" }
   
   # s.resource = "ios/TYRZResource.bundle"
 
