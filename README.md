@@ -1,6 +1,6 @@
 # react-native-qq-lib
 
-[![npm version](https://badge.fury.io/js/react-native-qq-lib.svg)](https://github.com/haxibiao/react-native-qq-lib)
+[![npm version](https://badge.fury.io/js/react-native-qq-lib.svg)](https://badge.fury.io/js/react-native-qq-lib)
 
 React Native bridging library that integrates QQ SDKs. QQ 登陆 分享，集成 QQ SDK react-native 版本需要 0.40.0 及以上
 
