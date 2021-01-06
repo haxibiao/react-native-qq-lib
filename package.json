@@ -1,6 +1,6 @@
 {
   "name": "react-native-qq-lib",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "QQ Login and Share support in React Native.",
   "main": "index.js",
   "scripts": {

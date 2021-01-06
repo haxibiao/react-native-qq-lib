@@ -235,7 +235,9 @@ public class QQModule extends ReactContextBaseJavaModule implements IUiListener,
                 bundle.putString(QQShare.SHARE_TO_QQ_AUDIO_URL, data.getString("flashUrl"));
             }
         } else if (type.equals("app")) {
-            bundle.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_APP);
+            // TODO: 腾讯SDK 3.5.2.15 弃用了分享APP功能
+            //（模式4） 分享应用（已废弃）相关文档地址: https://wiki.connect.qq.com/%E5%88%86%E4%BA%AB%E6%B6%88%E6%81%AF%E5%88%B0qq%EF%BC%88%E6%97%A0%E9%9C%80qq%E7%99%BB%E5%BD%95%EF%BC%89
+            // bundle.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_DEFAULT);
         }
 
         Log.e("QQShare", bundle.toString());
@@ -410,6 +412,11 @@ public class QQModule extends ReactContextBaseJavaModule implements IUiListener,
         resultMap.putString("message", "Share canceled.");
 
         this.resolvePromise(resultMap);
+    }
+
+    @Override
+    public void onWarning(int i) {
+
     }
 
     private void resolvePromise(ReadableMap resultMap) {
