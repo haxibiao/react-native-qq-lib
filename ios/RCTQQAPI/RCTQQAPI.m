@@ -71,21 +71,25 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(isQQInstalled:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject)
 {
-    if ([QQApiInterface isQQInstalled]) {
-        resolve(@[[NSNull null]]);
+    if ([QQApiInterface isSupportShareToQQ]) {
+        resolve([NSNumber numberWithBool:YES]);
+        // resolve(@[[NSNull null]]);
     }
     else {
-        reject(@"-1",INVOKE_FAILED,nil);
+        resolve([NSNumber numberWithBool:NO]);
+        // reject(@"-1",INVOKE_FAILED,nil);
     }
 }
 
 RCT_EXPORT_METHOD(isQQSupportApi:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject)
 {
     if ([QQApiInterface isQQSupportApi]) {
-        resolve(@[[NSNull null]]);
+        resolve([NSNumber numberWithBool:YES]);
+        // resolve(@[[NSNull null]]);
     }
     else {
-        reject(@"-1",INVOKE_FAILED,nil);
+        resolve([NSNumber numberWithBool:NO]);
+        // reject(@"-1",INVOKE_FAILED,nil);
     }
 }
 
