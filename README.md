@@ -98,16 +98,6 @@ manifestPlaceholders = [
 
 以后如果需要修改 APPID，只需要修改此一处。
 
-另外，确保你的 MainActivity.java 中有`onActivityResult`的实现：
-
-```java
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        mReactInstanceManager.onActivityResult(requestCode, resultCode, data);
-    }
-```
-
 ## 如何使用
 
 ### 引入包
