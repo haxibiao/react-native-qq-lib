@@ -78,10 +78,29 @@ cd ios && pod install && cd ..
 在你工程的`AppDelegate.m`文件中添加如下代码：
 
 ```
-#import <React/RCTLinkingManager.h>
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/QQApiInterfaceObject.h>
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-  return [RCTLinkingManager application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+  if ([TencentOAuth CanHandleOpenURL:url]) {
+    return [TencentOAuth HandleOpenURL:url];
+  }
+  return  YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+  continueUserActivity:(NSUserActivity *)userActivity
+  restorationHandler:(void(^)(NSArray<id<UIUserActivityRestoring>> * __nullable
+  restorableObjects))restorationHandler {
+  // 触发回调方法
+  [RCTLinkingManager application:application continueUserActivity:userActivity restorationHandler:restorationHandler];
+  NSURL *url = userActivity.webpageURL;
+  if (url && [TencentOAuth CanHandleUniversalLink:url]) {
+    return [TencentOAuth HandleUniversalLink:url];
+  }
+  return YES;
 }
 
 ```
