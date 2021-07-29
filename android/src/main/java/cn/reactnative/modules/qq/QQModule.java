@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ComponentName;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -42,6 +43,9 @@ import java.util.Date;
  * Modified by Renguang Dong on 2016-05-25.
  */
 public class QQModule extends ReactContextBaseJavaModule implements IUiListener, ActivityEventListener {
+
+    public final String TAG = "tzmax";
+    private Context mContext;
     private String appId;
     private Tencent api;
     private final static String INVOKE_FAILED = "QQ API invoke returns false.";
@@ -66,6 +70,7 @@ public class QQModule extends ReactContextBaseJavaModule implements IUiListener,
 
     public QQModule(ReactApplicationContext context) {
         super(context);
+        mContext = context;
         ApplicationInfo appInfo = null;
         try {
             appInfo = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
@@ -83,7 +88,20 @@ public class QQModule extends ReactContextBaseJavaModule implements IUiListener,
         super.initialize();
 
         if (api == null) {
-            api = Tencent.createInstance(appId, getReactApplicationContext().getApplicationContext());
+            String packageNames = null;
+            try {
+                PackageInfo info = mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0);
+                packageNames = info.packageName;
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            if(packageNames != null) {
+                Log.d(TAG, "packageNames: " + packageNames);
+                api = Tencent.createInstance(appId, getReactApplicationContext().getApplicationContext(), packageNames + ".fileprovider");
+            } else {
+                api = Tencent.createInstance(appId, getReactApplicationContext().getApplicationContext());
+            }
         }
         getReactApplicationContext().addActivityEventListener(this);
     }
@@ -222,7 +240,7 @@ public class QQModule extends ReactContextBaseJavaModule implements IUiListener,
             bundle.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_DEFAULT);
         } else if (type.equals(RCTQQShareTypeImage)) {
             String image = data.getString(RCTQQShareImageUrl);
-            if(image.startsWith("content://") || image.startsWith("file://")){
+            if (image.startsWith("content://") || image.startsWith("file://")) {
                 image = getImageAbsolutePath(getCurrentActivity(), Uri.parse(image));
             }
 
@@ -348,8 +366,6 @@ public class QQModule extends ReactContextBaseJavaModule implements IUiListener,
     public static boolean isGooglePhotosUri(Uri uri) {
         return "com.google.android.apps.photos.content".equals(uri.getAuthority());
     }
-
-
 
 
     private String _getType() {
