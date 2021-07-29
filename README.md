@@ -14,7 +14,7 @@ React Native bridging library that integrates QQ SDKs. QQ 登陆 分享，集成
 
 ### 集成 QQ SDK 包版本
 
-> Android SDK 版本：v3.5.2.15（2020-12-30）
+> Android SDK 版本：v3.5.4.11（2021-04-27）
 
 > IOS SDK 版本：v3.3.9（2020-04-27）
 
