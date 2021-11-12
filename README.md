@@ -127,6 +127,11 @@ import * as QQAPI from 'react-native-qq-lib';
 
 ### API
 
+#### QQAPI.init()
+
+初始化，调用其他api时请先调用该api（3.1.0以前版本无需调用此方法,会自动初始化）
+
+
 #### QQAPI.login([scopes])
 
 - scopes: 登录所申请的权限，默认为 get_simple_userinfo。 需要多个权限时，以逗号分隔。
@@ -233,3 +238,7 @@ if (RegExp(/http:\/\//).exec(_image) || RegExp(/https:\/\//).exec(_image)) {
 #### Android: 已经成功激活 QQ 登录，但回调没有被执行
 
 通常出现这个原因是因为 MainActivity.java 中缺少 onActivityResult 的调用。
+
+#### Android: 应用商店检测到未授权前获取隐私信息
+
+出现这个原因是因为sdk在同意隐私政策之前就自动初始化了，目前3.1.0版本已将初始化api暴露，取消了自动初始化，可在RN端自由调整初始化时机。

@@ -1,33 +1,33 @@
 {
-  "name": "react-native-qq-lib",
-  "version": "3.0.9",
-  "description": "QQ Login and Share support in React Native.",
-  "main": "index.js",
-  "typings": "index.d.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/haxibiao/react-native-qq-lib.git"
-  },
-  "keywords": [
-    "react-native",
-    "ios",
-    "android"
-  ],
-  "author": "PBK-B",
-  "license": "ISC",
-  "peerDependencies": {
-    "react": "^16.8.1",
-    "react-native": ">=0.60.0-rc.0 <1.0.x"
-  },
-  "devDependencies": {
-    "react": "^16.9.0",
-    "react-native": "^0.61.5"
-  },
-  "bugs": {
-    "url": "https://github.com/haxibiao/react-native-qq-lib/issues"
-  },
-  "homepage": "https://github.com/haxibiao/react-native-qq-lib#readme"
+    "name": "react-native-qq-lib",
+    "version": "3.1.0",
+    "description": "QQ Login and Share support in React Native.",
+    "main": "index.js",
+    "typings": "index.d.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/haxibiao/react-native-qq-lib.git"
+    },
+    "keywords": [
+        "react-native",
+        "ios",
+        "android"
+    ],
+    "author": "PBK-B",
+    "license": "ISC",
+    "peerDependencies": {
+        "react": "^16.8.1",
+        "react-native": ">=0.60.0-rc.0 <1.0.x"
+    },
+    "devDependencies": {
+        "react": "^16.9.0",
+        "react-native": "^0.61.5"
+    },
+    "bugs": {
+        "url": "https://github.com/haxibiao/react-native-qq-lib/issues"
+    },
+    "homepage": "https://github.com/haxibiao/react-native-qq-lib#readme"
 }
